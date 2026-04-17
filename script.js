@@ -3,17 +3,39 @@ const display = document.getElementById("display");
 let justCalculated = false;
 
 function appendValue(value) {
-  if (justCalculated && !isOperator(value)) {
-    display.value = "";
+  if (justCalculated) {
+    if (!isOperator(value)) {
+      display.value = "";
+    }
     justCalculated = false;
   }
 
+  if (isOperator(value)) {
+    handleOperator(value);
+    return;
+  }
+
   display.value += value;
-  justCalculated = false;
 }
 
 function isOperator(value) {
   return ["+", "-", "*", "/", "."].includes(value);
+}
+
+function handleOperator(operator) {
+  const lastChar = display.value.slice(-1);
+
+  if (display.value === "" && operator !== "-") {
+    return;
+  }
+
+  if (isOperator(lastChar)) {
+    display.value = display.value.slice(0, -1) + operator;
+  } else {
+    display.value += operator;
+  }
+
+  justCalculated = false;
 }
 
 function clearDisplay() {
@@ -28,11 +50,11 @@ function backspace() {
 
 function calculate() {
   try {
-    if (display.value.includes("/0")) {
-      display.value = "Error";
-    } else {
-      display.value = eval(display.value);
-    }
+    if (!display.value) return;
+
+    const result = Function("return " + display.value)();
+
+    display.value = Number.isFinite(result) ? result : "Error";
     justCalculated = true;
   } catch {
     display.value = "Error";
@@ -40,7 +62,8 @@ function calculate() {
   }
 }
 
-document.addEventListener("keydown", function(event) {
+/* Keyboard Support */
+document.addEventListener("keydown", function (event) {
   const key = event.key;
 
   if (!isNaN(key) || "+-*/.".includes(key)) {
