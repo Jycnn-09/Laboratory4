@@ -2,13 +2,24 @@ const display = document.getElementById("display");
 
 let justCalculated = false;
 
+function getValue() {
+  return display.value === "0" ? "" : display.value;
+}
+
+function setValue(val) {
+  display.value = val === "" ? "0" : val;
+}
+
 function appendValue(value) {
+  let current = getValue();
+
   if (justCalculated && !isOperator(value)) {
-    display.value = "";
+    current = "";
     justCalculated = false;
   }
 
-  display.value += value;
+  current += value;
+  setValue(current);
   justCalculated = false;
 }
 
@@ -17,20 +28,28 @@ function isOperator(value) {
 }
 
 function clearDisplay() {
-  display.value = "";
+  display.value = "0";
   justCalculated = false;
 }
 
 function backspace() {
-  display.value = display.value.slice(0, -1);
+  let current = getValue();
+
+  current = current.slice(0, -1);
+  setValue(current);
   justCalculated = false;
 }
 
 function calculate() {
   try {
-    if (!display.value) return;
+    let expression = getValue();
 
-    const result = Function("return " + display.value)();
+    if (!expression) {
+      display.value = "0";
+      return;
+    }
+
+    const result = Function("return " + expression)();
 
     display.value = Number.isFinite(result) ? result : "Error";
     justCalculated = true;
