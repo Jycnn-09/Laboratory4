@@ -6,6 +6,7 @@
 <title>Calculator</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
@@ -14,21 +15,22 @@
     <h2>User Guide</h2>
     <ul>
       <li>Click number buttons (0–9) to input values.</li>
-      <li>Select an operator (+, −, ×, ÷) to perform calculations.</li>
-      <li>Press "=" to evaluate the expression.</li>
-      <li>Click "C" to clear all input.</li>
-      <li>Click "⌫" to delete the last character entered.</li>
+      <li>Select an operator (+, −, ×, ÷).</li>
+      <li>Press "=" to evaluate.</li>
+      <li>Click "C" to reset to 0.</li>
+      <li>Click "⌫" to delete last character.</li>
     </ul>
 
     <h3>Note</h3>
     <ul>
-      <li>Keyboard input is disabled. Use buttons only.</li>
+      <li>Display always shows 0 when empty.</li>
+      <li>Keyboard input is disabled.</li>
     </ul>
   </div>
 
   <div class="calculator">
     <h1>Calculator</h1>
-    <input type="text" id="display" disabled>
+    <input type="text" id="display" value="0" disabled>
 
     <div class="buttons">
       <button class="action" onclick="clearDisplay()">C</button>
