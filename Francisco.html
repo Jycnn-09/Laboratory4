@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lavender Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="instructions">
+    <h2>User Guide</h2>
+    <ul>
+      <li>Click number buttons (0–9) to input values.</li>
+      <li>Select an operator (+, −, ×, ÷) to perform calculations.</li>
+      <li>Press "=" to evaluate the expression.</li>
+      <li>Click "C" to clear all input.</li>
+      <li>Click "⌫" to delete the last character entered.</li>
+    </ul>
+
+    <h3>Keyboard Controls</h3>
+    <ul>
+      <li>Use number keys (0–9) for input.</li>
+      <li>Use +, -, *, / for operations.</li>
+      <li>Press <strong>Enter</strong> to calculate.</li>
+      <li>Press <strong>Backspace</strong> to delete.</li>
+      <li>Press <strong>C</strong> to clear.</li>
+    </ul>
+  </div>
+
+  <div class="calculator">
+    <h1>Calculator</h1>
+    <input type="text" id="display" disabled>
+
+    <div class="buttons">
+      <button class="action" onclick="clearDisplay()">C</button>
+      <button class="action" onclick="backspace()">⌫</button>
+      <button class="operator" onclick="appendValue('/')">÷</button>
+      <button class="operator" onclick="appendValue('*')">×</button>
+
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button class="operator" onclick="appendValue('-')">−</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button class="operator" onclick="appendValue('+')">+</button>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button class="equal" onclick="calculate()">=</button>
+
+      <button class="zero" onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
